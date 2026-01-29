@@ -253,16 +253,16 @@ Until then, this website is my way of giving you a hug from far away. 🥔💕`
 export const Closure: React.FC<ClosureProps> = ({
     id = 'closure',
     message = defaultMessage,
-    signature = 'Yours always',
-    whatsappNumber = '',
-    instagramUsername = '',
-    phoneNumber = '',
+    signature = 'Yours always, Carrot',
+    whatsappNumber = '919113896649',
+    instagramUsername = 'atoderx',
+    phoneNumber = '918105680016',
 }) => {
     const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true })
 
     // Build contact links
     const whatsappLink = whatsappNumber
-        ? `https://wa.me/${whatsappNumber}?text=Hey%20potato%20🥔💕`
+        ? `https://wa.me/${whatsappNumber}?text=Hey%20carrot%20`
         : ''
     const instagramLink = instagramUsername
         ? `https://instagram.com/${instagramUsername}`
