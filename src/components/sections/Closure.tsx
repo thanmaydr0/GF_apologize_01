@@ -239,13 +239,13 @@ const ContactButton: React.FC<ContactButtonProps> = ({
 // ============================================
 // DEFAULT MESSAGE
 // ============================================
-const defaultMessage = `I know a website can't undo hurt feelings, but I hope it shows you how much you mean to me.
+const defaultMessage = `I made this for you because you deserve to smile — and because I wanted you to know just how special you are to me.
 
-You deserve someone who sees you clearly, celebrates you fully, and never makes you question your worth. I want to be that person for you.
+Every section, every word, every silly potato pun? That's me trying to put into pixels what I feel in my heart.
 
-I'm here whenever you're ready to talk. No pressure. Take all the time you need.
+You are the best thing that's happened to me. And I can't wait to finally see you again, hold you, and tell you all of this in person.
 
-I love you, Potato. 🥔💕`
+Until then, this website is my way of giving you a hug from far away. 🥔💕`
 
 // ============================================
 // MAIN CLOSURE COMPONENT
@@ -253,7 +253,7 @@ I love you, Potato. 🥔💕`
 export const Closure: React.FC<ClosureProps> = ({
     id = 'closure',
     message = defaultMessage,
-    signature = 'With all my love',
+    signature = 'Yours always',
     whatsappNumber = '',
     instagramUsername = '',
     phoneNumber = '',
@@ -347,7 +347,7 @@ export const Closure: React.FC<ClosureProps> = ({
                         transition={{ delay: 0.6 }}
                     >
                         <p className="text-secondary-300 mb-6">
-                            Whenever you're ready...
+                            Miss me already? Come say hi 💕
                         </p>
 
                         <div className="flex flex-col sm:flex-row justify-center gap-4">

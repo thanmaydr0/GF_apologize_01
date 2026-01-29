@@ -43,9 +43,9 @@ function App() {
           CLOSURE SECTION
           ============================================ */}
             <Closure
-                whatsappNumber=""
-                instagramUsername=""
-                phoneNumber=""
+                whatsappNumber="919113896649"
+                instagramUsername="atoderx"
+                phoneNumber="+919113896649"
             />
 
             {/* ============================================
