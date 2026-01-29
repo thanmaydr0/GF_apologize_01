@@ -7,7 +7,7 @@ import {
     SectionHeader,
     AnimatedText
 } from './components/ui'
-import { Hero, Apology, PotatoPuns, ReasonsILoveYou } from './components/sections'
+import { Hero, Apology, PotatoPuns, ReasonsILoveYou, ScratchCards } from './components/sections'
 
 function App() {
     return (
@@ -31,6 +31,11 @@ function App() {
           100+ REASONS I LOVE YOU SECTION
           ============================================ */}
             <ReasonsILoveYou />
+
+            {/* ============================================
+          SCRATCH CARDS SECTION
+          ============================================ */}
+            <ScratchCards />
 
             {/* ============================================
           LETTER SECTION
