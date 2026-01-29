@@ -533,17 +533,49 @@ export const ScratchCards: React.FC<ScratchCardsProps> = ({ id = 'scratch-cards'
                             exit={{ opacity: 0 }}
                         />
 
+                        {/* Confetti Burst */}
+                        <div className="absolute pointer-events-none flex justify-center items-center inset-0 z-[105]">
+                            {[...Array(12)].map((_, i) => (
+                                <motion.div
+                                    key={i}
+                                    className={`absolute w-2 h-2 rounded-full ${['bg-primary-300', 'bg-accent-300', 'bg-secondary-300', 'bg-yellow-300'][i % 4]}`}
+                                    initial={{ scale: 0, x: 0, y: 0 }}
+                                    animate={{
+                                        scale: [0, 1, 0],
+                                        x: (Math.random() - 0.5) * 400,
+                                        y: (Math.random() - 0.5) * 400,
+                                        rotate: Math.random() * 360
+                                    }}
+                                    transition={{ duration: 0.8, ease: "easeOut" }}
+                                />
+                            ))}
+                        </div>
+
                         {/* Modal content */}
                         <motion.div
-                            className="relative bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden"
-                            initial={{ scale: 0.8, opacity: 0, y: 50 }}
-                            animate={{ scale: 1, opacity: 1, y: 0 }}
-                            exit={{ scale: 0.8, opacity: 0, y: 50 }}
-                            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                            className="relative bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden z-[110]"
+                            initial={{ scale: 0.5, opacity: 0, rotate: -5 }}
+                            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                            exit={{ scale: 0.8, opacity: 0 }}
+                            transition={{ type: 'spring', damping: 15, stiffness: 300, mass: 0.8 }}
                         >
                             {/* Header with emoji */}
-                            <div className="bg-gradient-to-r from-primary-100 to-primary-50 px-6 py-5 text-center">
-                                <span className="text-5xl">{modalCard.emoji}</span>
+                            <div className="bg-gradient-to-r from-primary-100 to-primary-50 px-6 py-5 text-center relative overflow-hidden">
+                                <motion.span
+                                    className="text-6xl inline-block relative z-10"
+                                    initial={{ scale: 0, rotate: -180 }}
+                                    animate={{ scale: 1, rotate: 0 }}
+                                    transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
+                                >
+                                    {modalCard.emoji}
+                                </motion.span>
+
+                                {/* Background glow */}
+                                <motion.div
+                                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-white/30 rounded-full blur-xl"
+                                    animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+                                    transition={{ duration: 2, repeat: Infinity }}
+                                />
                             </div>
 
                             {/* Content */}

@@ -34,52 +34,44 @@ function App() {
                     <ThemeToggle />
 
                     {/* ============================================
-                   HERO SECTION
-                   ============================================ */}
+                       HERO SECTION
+                       ============================================ */}
                     <Hero nextSectionId="apology" />
 
                     {/* ============================================
-                   APOLOGY SECTION
-                   ============================================ */}
+                       APOLOGY SECTION
+                       ============================================ */}
                     <Apology />
 
                     {/* ============================================
-                   POTATO PUNS SECTION
-                   ============================================ */}
+                       POTATO PUNS SECTION
+                       ============================================ */}
                     <PotatoPuns />
 
                     {/* ============================================
-                   100+ REASONS I LOVE YOU SECTION
-                   ============================================ */}
+                       100+ REASONS I LOVE YOU SECTION
+                       ============================================ */}
                     <ReasonsILoveYou />
 
                     {/* ============================================
-                   SCRATCH CARDS SECTION
-                   ============================================ */}
+                       SCRATCH CARDS SECTION
+                       ============================================ */}
                     <ScratchCards />
 
                     {/* ============================================
-                   COUNTDOWN SECTION
-                   ============================================ */}
-                    <Countdown
-                        targetDate="2026-02-02T17:00:00+05:30"
-                        heading="Until I Can Hold You Again"
-                        subheading="Every second brings us closer"
-                    />
+                       COUNTDOWN SECTION
+                       ============================================ */}
+                    <Countdown targetDate="2025-12-31T00:00:00" />
 
                     {/* ============================================
-                   CLOSURE SECTION
-                   ============================================ */}
-                    <Closure
-                        whatsappNumber="919113896649"
-                        instagramUsername="atoderx"
-                        phoneNumber="+919113896649"
-                    />
+                       CLOSURE SECTION
+                       ============================================ */}
+                    <Closure />
 
                     {/* ============================================
-                   FOOTER
-                   ============================================ */}
-                    <footer className="py-16 px-6 text-center bg-gradient-to-t from-secondary-50 to-transparent">
+                       FOOTER
+                       ============================================ */}
+                    <footer className="py-12 px-6 text-center bg-gradient-to-t from-primary-50 to-transparent">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -109,4 +101,3 @@ function App() {
 }
 
 export default App
-
