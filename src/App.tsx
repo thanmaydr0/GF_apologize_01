@@ -10,7 +10,7 @@ import {
     SectionHeader,
     AnimatedText
 } from './components/ui'
-import { Hero, Apology } from './components/sections'
+import { Hero, Apology, PotatoPuns } from './components/sections'
 
 function App() {
     return (
@@ -24,6 +24,11 @@ function App() {
           APOLOGY SECTION
           ============================================ */}
             <Apology />
+
+            {/* ============================================
+          POTATO PUNS SECTION
+          ============================================ */}
+            <PotatoPuns />
 
             {/* ============================================
           REASONS SECTION
