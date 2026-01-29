@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { FaHeart, FaArrowRight } from 'react-icons/fa'
+import { FaHeart } from 'react-icons/fa'
 import {
     Button,
     Card,
@@ -10,6 +10,7 @@ import {
     SectionHeader,
     AnimatedText
 } from './components/ui'
+import { Hero } from './components/sections'
 
 function App() {
     return (
@@ -17,96 +18,13 @@ function App() {
             {/* ============================================
           HERO SECTION
           ============================================ */}
-            <section className="min-h-screen flex flex-col items-center justify-center px-6 py-12 relative overflow-hidden">
-                {/* Decorative Background Elements */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <motion.div
-                        className="absolute top-20 left-10 w-32 h-32 rounded-full bg-gradient-radial-pink opacity-50"
-                        animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-                        transition={{ duration: 8, repeat: Infinity }}
-                    />
-                    <motion.div
-                        className="absolute bottom-32 right-16 w-48 h-48 rounded-full bg-gradient-radial-pink opacity-30"
-                        animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.4, 0.2] }}
-                        transition={{ duration: 10, repeat: Infinity }}
-                    />
-                </div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-                    className="text-center max-w-3xl mx-auto relative z-10"
-                >
-                    {/* Floating Heart */}
-                    <motion.div
-                        animate={{ y: [0, -10, 0] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                        className="mb-8"
-                    >
-                        <FaHeart className="text-6xl text-primary-200 mx-auto animate-heartbeat" />
-                    </motion.div>
-
-                    {/* Main Heading with Character Animation */}
-                    <AnimatedText
-                        as="h1"
-                        animation="wordReveal"
-                        className="font-serif text-secondary-500 mb-6"
-                    >
-                        A Letter From My Heart
-                    </AnimatedText>
-
-                    {/* Gradient Subtitle */}
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.6, duration: 0.8 }}
-                        className="text-lg md:text-xl text-secondary-300 leading-relaxed mb-10 max-w-xl mx-auto"
-                    >
-                        Sometimes words fail us, but love never does.
-                        <br />
-                        <span className="text-gradient-romantic font-medium">
-                            This is my attempt to say what my heart feels.
-                        </span>
-                    </motion.p>
-
-                    {/* CTA Buttons */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.9, duration: 0.6 }}
-                        className="flex flex-col sm:flex-row gap-4 justify-center"
-                    >
-                        <Button size="lg" rightIcon={<FaArrowRight />}>
-                            Begin Reading
-                        </Button>
-                        <Button variant="outline" size="lg">
-                            Our Story
-                        </Button>
-                    </motion.div>
-                </motion.div>
-
-                {/* Scroll Indicator */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.5, duration: 0.8 }}
-                    className="absolute bottom-10"
-                >
-                    <motion.div
-                        animate={{ y: [0, 8, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                        className="w-6 h-10 border-2 border-primary-200 rounded-full flex justify-center pt-2"
-                    >
-                        <motion.div className="w-1.5 h-1.5 bg-primary-300 rounded-full" />
-                    </motion.div>
-                </motion.div>
-            </section>
+            <Hero nextSectionId="reasons" />
 
             {/* ============================================
-          REASONS SECTION (Card Demo)
+          REASONS SECTION
           ============================================ */}
             <SectionContainer
+                id="reasons"
                 spacing="lg"
                 width="wide"
                 background="warm"
@@ -125,10 +43,13 @@ function App() {
                     }}
                 >
                     {[
-                        { title: 'Your Smile', content: 'The way your eyes light up when you smile makes everything feel right in the world.' },
-                        { title: 'Your Kindness', content: 'Your compassion for others inspires me to be a better person every single day.' },
-                        { title: 'Our Memories', content: 'Every moment we\'ve shared has become a treasured chapter in my heart.' },
-                    ].map((reason, index) => (
+                        { title: 'Your Smile', content: 'The way your eyes light up when you smile makes everything feel right in the world.', emoji: '💕' },
+                        { title: 'Your Kindness', content: 'Your compassion for others inspires me to be a better person every single day.', emoji: '✨' },
+                        { title: 'Our Memories', content: 'Every moment we\'ve shared has become a treasured chapter in my heart.', emoji: '🌸' },
+                        { title: 'Your Strength', content: 'The way you face challenges with grace gives me courage when I need it most.', emoji: '🦋' },
+                        { title: 'Your Laughter', content: 'That sound is my favorite melody, the one I want to hear every day of my life.', emoji: '🎵' },
+                        { title: 'Just You', content: 'Simply being near you makes everything feel like it\'s going to be okay.', emoji: '💝' },
+                    ].map((reason) => (
                         <motion.div
                             key={reason.title}
                             variants={{
@@ -138,9 +59,7 @@ function App() {
                         >
                             <Card variant="elevated" hoverable>
                                 <CardHeader>
-                                    <span className="text-3xl mb-3 block">
-                                        {['💕', '✨', '🌸'][index]}
-                                    </span>
+                                    <span className="text-3xl mb-3 block">{reason.emoji}</span>
                                     <CardTitle>{reason.title}</CardTitle>
                                 </CardHeader>
                                 <CardContent>
@@ -153,19 +72,24 @@ function App() {
             </SectionContainer>
 
             {/* ============================================
-          LETTER SECTION (AnimatedText Demo)
+          LETTER SECTION
           ============================================ */}
-            <SectionContainer spacing="lg" width="narrow" ariaLabel="A letter to you">
+            <SectionContainer
+                id="letter"
+                spacing="lg"
+                width="narrow"
+                ariaLabel="A letter to you"
+            >
                 <Card variant="glass" padding="lg">
                     <AnimatedText
                         as="h2"
                         animation="fadeInUp"
                         className="text-center mb-8 text-secondary-500"
                     >
-                        To My Dearest
+                        To My Dearest Potato
                     </AnimatedText>
 
-                    <div className="space-y-6 text-secondary-400">
+                    <div className="space-y-6 text-secondary-400 leading-relaxed">
                         <AnimatedText animation="fadeIn" delay={0.2}>
                             I've written this letter a hundred times in my mind, each time searching for the perfect words. But I've come to realize that perfect words don't exist for feelings this deep.
                         </AnimatedText>
@@ -175,60 +99,71 @@ function App() {
                         </AnimatedText>
 
                         <AnimatedText animation="fadeIn" delay={0.6}>
-                            You are my favorite story, and I hope it's one we can keep writing together.
+                            You are my favorite story, and I hope it's one we can keep writing together. Every chapter, every page, every word — I want to share them all with you.
+                        </AnimatedText>
+
+                        <AnimatedText animation="fadeIn" delay={0.8}>
+                            Please know that my heart belongs to you, and it always will. 🥔💕
                         </AnimatedText>
                     </div>
 
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        transition={{ delay: 1, duration: 0.6 }}
+                        transition={{ delay: 1.2, duration: 0.6 }}
+                        viewport={{ once: true }}
                         className="mt-10 text-center"
                     >
                         <p className="font-serif italic text-secondary-300">
                             Forever yours,
                             <br />
-                            <span className="text-gradient-romantic text-lg">With all my love</span>
+                            <span className="text-gradient-romantic text-xl font-medium mt-2 block">
+                                With all my love
+                            </span>
                         </p>
                     </motion.div>
                 </Card>
             </SectionContainer>
 
             {/* ============================================
-          BUTTON VARIANTS DEMO
+          CALL TO ACTION
           ============================================ */}
-            <SectionContainer spacing="md" background="blush" ariaLabel="Actions">
+            <SectionContainer spacing="md" background="blush" ariaLabel="Next steps">
                 <SectionHeader
                     title="What Comes Next"
                     subtitle="I'm ready to put in the work, if you'll let me."
                 />
 
-                <div className="flex flex-wrap justify-center gap-4">
-                    <Button variant="primary">Primary Action</Button>
-                    <Button variant="secondary">Secondary</Button>
-                    <Button variant="outline">Outline Style</Button>
-                    <Button variant="ghost">Ghost Button</Button>
-                </div>
-
-                <div className="flex flex-wrap justify-center gap-4 mt-6">
-                    <Button size="sm">Small</Button>
-                    <Button size="md">Medium</Button>
-                    <Button size="lg">Large</Button>
+                <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
+                    <Button variant="primary" size="lg" fullWidth>
+                        Let's Talk 💬
+                    </Button>
+                    <Button variant="outline" size="lg" fullWidth>
+                        Read More
+                    </Button>
                 </div>
             </SectionContainer>
 
             {/* ============================================
           FOOTER
           ============================================ */}
-            <footer className="py-12 px-6 text-center">
+            <footer className="py-16 px-6 text-center bg-gradient-to-t from-secondary-50 to-transparent">
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
                 >
-                    <FaHeart className="text-2xl text-primary-200 mx-auto mb-4 animate-pulse-soft" />
-                    <p className="text-secondary-300 text-sm">
-                        Made with love, for the one who holds my heart
+                    <motion.div
+                        animate={{ scale: [1, 1.1, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                    >
+                        <FaHeart className="text-3xl text-primary-200 mx-auto mb-4" />
+                    </motion.div>
+                    <p className="text-secondary-300 text-sm max-w-md mx-auto">
+                        Made with love, for the one who holds my heart.
+                        <br />
+                        <span className="text-primary-300">Every pixel, every word — it's all for you.</span>
                     </p>
                 </motion.div>
             </footer>
