@@ -4,12 +4,14 @@ import { FaHeart } from 'react-icons/fa'
 import { Hero, Apology, PotatoPuns, ReasonsILoveYou, ScratchCards, Countdown, Closure } from './components/sections'
 import { Navigation } from './components/Navigation'
 import { LoadingScreen } from './components/LoadingScreen'
+import { MusicPlayer } from './components/MusicPlayer'
+import { SoundProvider } from './components/SoundSystem'
 
 function App() {
     const [isLoading, setIsLoading] = useState(true)
 
     return (
-        <>
+        <SoundProvider>
             {/* Loading Screen */}
             <LoadingScreen
                 minDuration={2500}
@@ -21,6 +23,9 @@ function App() {
             <div className={`min-h-screen ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}>
                 {/* Navigation */}
                 <Navigation />
+
+                {/* Floating Music Player */}
+                <MusicPlayer />
 
                 {/* ============================================
                    HERO SECTION
@@ -92,8 +97,9 @@ function App() {
                     </motion.div>
                 </footer>
             </div>
-        </>
+        </SoundProvider>
     )
 }
 
 export default App
+
