@@ -49,6 +49,47 @@
 }
 
 /* ============================================
+   DARK MODE VARIABLES
+   ============================================ */
+.dark {
+  /* Primary: Deep Rose/Burgundy tones */
+  --color-primary-50: #2D1F24;
+  --color-primary-100: #3D2830;
+  --color-primary-200: #8B4B5D;
+  --color-primary-300: #C4748A;
+  --color-primary-400: #E8899E;
+  --color-primary-500: #F8A5B8;
+
+  /* Secondary: Dark warm tones */
+  --color-secondary-50: #1A1614;
+  --color-secondary-100: #252019;
+  --color-secondary-200: #3D3428;
+  --color-secondary-300: #5C4F3F;
+  --color-secondary-400: #8A7B66;
+  --color-secondary-500: #C4B49A;
+
+  /* Accent */
+  --color-accent-200: #4A4733;
+  --color-accent-300: #5D6B5E;
+  --color-accent-rose: #8B5A5C;
+
+  /* Backgrounds - Deep romantic darks */
+  --color-cream: #1A1614;
+  --color-blush: #1F1A1C;
+  --color-paper: #221D1F;
+
+  /* Text - Light on dark */
+  --color-text-primary: #F5EDE8;
+  --color-text-secondary: #D4C8C0;
+  --color-text-muted: #9A8B7F;
+
+  /* Shadows - Darker, more subtle */
+  --shadow-romantic: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-romantic-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
    BASE STYLES
    ============================================ */
 *,

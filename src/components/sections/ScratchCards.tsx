@@ -92,11 +92,14 @@ const ScratchCard: React.FC<ScratchCardProps> = ({
         ctx.fill()
 
         // Add instruction text
-        ctx.font = 'bold 16px Inter, sans-serif'
-        ctx.fillStyle = 'rgba(90, 70, 50, 0.7)'
+        ctx.font = 'bold 14px Inter, sans-serif'
+        ctx.fillStyle = 'rgba(90, 70, 50, 0.8)'
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
-        ctx.fillText('✨ Scratch Me! ✨', CARD_WIDTH / 2, CARD_HEIGHT / 2 - 30)
+        ctx.fillText('👆 Swipe to reveal!', CARD_WIDTH / 2, CARD_HEIGHT / 2 - 30)
+        ctx.font = '12px Inter, sans-serif'
+        ctx.fillStyle = 'rgba(90, 70, 50, 0.5)'
+        ctx.fillText('or tap Peek below', CARD_WIDTH / 2, CARD_HEIGHT / 2 + 45)
 
         ctx.font = '13px Inter, sans-serif'
         ctx.fillStyle = 'rgba(90, 70, 50, 0.5)'
@@ -213,13 +216,6 @@ const ScratchCard: React.FC<ScratchCardProps> = ({
         lastPoint.current = null
     }, [])
 
-    const categoryColors: Record<string, string> = {
-        compliment: 'from-primary-100 to-primary-50',
-        memory: 'from-accent-100 to-accent-50',
-        promise: 'from-secondary-100 to-secondary-50',
-        playful: 'from-primary-50 via-accent-50 to-secondary-50',
-    }
-
     return (
         <motion.div
             className="relative rounded-2xl overflow-hidden shadow-romantic bg-white"
@@ -233,31 +229,32 @@ const ScratchCard: React.FC<ScratchCardProps> = ({
             <div
                 className={`
           absolute inset-0 p-5 flex flex-col
-          bg-gradient-to-br ${categoryColors[card.category]}
+          bg-white
         `}
             >
                 <div className="mb-2">
                     <span className="text-2xl">{card.emoji}</span>
                 </div>
 
-                <h4 className="font-serif text-base text-secondary-500 mb-2 font-medium">
+                <h4 className="font-serif text-lg text-gray-800 mb-3 font-semibold">
                     {card.title}
                 </h4>
 
-                <p className="text-sm text-secondary-400 leading-relaxed flex-1 overflow-auto">
+                <p className="text-base text-gray-700 leading-relaxed flex-1 overflow-auto">
                     {card.hiddenMessage}
                 </p>
 
                 {state.revealed && (
                     <motion.button
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
                         onClick={onReset}
-                        className="mt-2 text-xs text-secondary-300 hover:text-secondary-500 
-                       flex items-center gap-1 self-end transition-colors"
+                        className="mt-3 px-4 py-2 rounded-full bg-primary-100 hover:bg-primary-200 
+                       text-primary-500 hover:text-white text-sm font-medium
+                       flex items-center gap-2 self-center transition-all shadow-sm"
                     >
-                        <FaRedo className="text-[10px]" /> Scratch again
+                        <FaRedo className="text-xs" /> Try Another Card
                     </motion.button>
                 )}
             </div>
@@ -303,12 +300,12 @@ const ScratchCard: React.FC<ScratchCardProps> = ({
                             {/* Quick reveal button */}
                             <button
                                 onClick={onReveal}
-                                className="flex items-center gap-1.5 px-3 py-1 rounded-full
-                           bg-white/70 hover:bg-white text-secondary-500 text-xs font-medium
-                           transition-colors"
+                                className="flex items-center gap-1.5 px-4 py-1.5 rounded-full
+                           bg-primary-100 hover:bg-primary-200 text-primary-500 hover:text-white 
+                           text-sm font-medium transition-all shadow-sm"
                             >
-                                <FaEye className="text-[10px]" />
-                                Reveal
+                                <FaEye className="text-xs" />
+                                Peek Inside
                             </button>
                         </div>
                     </motion.div>
@@ -366,6 +363,9 @@ export const ScratchCards: React.FC<ScratchCardsProps> = ({ id = 'scratch-cards'
         return initial
     })
 
+    // Modal state for showing revealed card
+    const [modalCard, setModalCard] = useState<ScratchCardData | null>(null)
+
     const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true })
 
     const revealedCount = Object.values(cardStates).filter(s => s.revealed).length
@@ -383,6 +383,9 @@ export const ScratchCards: React.FC<ScratchCardsProps> = ({ id = 'scratch-cards'
             ...prev,
             [cardId]: { ...prev[cardId], revealed: true, scratched: 100 }
         }))
+        // Open popup with full card content
+        const card = scratchCards.find(c => c.id === cardId)
+        if (card) setModalCard(card)
     }, [])
 
     const handleReset = useCallback((cardId: number) => {
@@ -399,6 +402,8 @@ export const ScratchCards: React.FC<ScratchCardsProps> = ({ id = 'scratch-cards'
         })
         setCardStates(reset)
     }, [])
+
+    const closeModal = () => setModalCard(null)
 
     return (
         <section
@@ -509,6 +514,67 @@ export const ScratchCards: React.FC<ScratchCardsProps> = ({ id = 'scratch-cards'
                     Every card is something true I feel about you 🥔💕
                 </motion.p>
             </div>
+
+            {/* Modal Popup for revealed card */}
+            <AnimatePresence>
+                {modalCard && (
+                    <motion.div
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        {/* Backdrop */}
+                        <motion.div
+                            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+                            onClick={closeModal}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                        />
+
+                        {/* Modal content */}
+                        <motion.div
+                            className="relative bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden"
+                            initial={{ scale: 0.8, opacity: 0, y: 50 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.8, opacity: 0, y: 50 }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                        >
+                            {/* Header with emoji */}
+                            <div className="bg-gradient-to-r from-primary-100 to-primary-50 px-6 py-5 text-center">
+                                <span className="text-5xl">{modalCard.emoji}</span>
+                            </div>
+
+                            {/* Content */}
+                            <div className="p-6">
+                                <h3 className="font-serif text-xl text-gray-800 font-semibold mb-4 text-center">
+                                    {modalCard.title}
+                                </h3>
+
+                                <p className="text-gray-700 text-base leading-relaxed text-center mb-6">
+                                    {modalCard.hiddenMessage}
+                                </p>
+
+                                {/* Category badge */}
+                                <div className="flex justify-center mb-4">
+                                    <span className="px-3 py-1 bg-primary-50 text-primary-400 text-sm rounded-full capitalize">
+                                        {modalCard.category}
+                                    </span>
+                                </div>
+
+                                {/* Close button */}
+                                <button
+                                    onClick={closeModal}
+                                    className="w-full py-3 bg-primary-200 hover:bg-primary-300 text-white rounded-full font-medium transition-colors"
+                                >
+                                    💕 Close
+                                </button>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     )
 }

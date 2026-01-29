@@ -78,7 +78,7 @@ export const scratchCards: ScratchCardData[] = [
     {
         id: 10,
         title: "What you mean to me",
-        hiddenMessage: "You're my best friend, my favorite person, my calm, my chaos, my laughter, my future. Every reel I send? It's my way of saying 'I thought of you, again.'",
+        hiddenMessage: "You're my girlfriend, my favorite person, my calm, my chaos, my laughter, my future. Every reel I send? It's my way of saying 'I thought of you, again.'",
         emoji: "❤️",
         category: 'compliment',
     },
