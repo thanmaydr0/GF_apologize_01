@@ -2,3 +2,4 @@
 export { Hero } from './Hero'
 export { Apology } from './Apology'
 export { PotatoPuns } from './PotatoPuns'
+export { ReasonsILoveYou } from './ReasonsILoveYou'

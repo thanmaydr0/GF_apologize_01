@@ -3,14 +3,11 @@ import { FaHeart } from 'react-icons/fa'
 import {
     Button,
     Card,
-    CardHeader,
-    CardTitle,
-    CardContent,
     SectionContainer,
     SectionHeader,
     AnimatedText
 } from './components/ui'
-import { Hero, Apology, PotatoPuns } from './components/sections'
+import { Hero, Apology, PotatoPuns, ReasonsILoveYou } from './components/sections'
 
 function App() {
     return (
@@ -31,55 +28,9 @@ function App() {
             <PotatoPuns />
 
             {/* ============================================
-          REASONS SECTION
+          100+ REASONS I LOVE YOU SECTION
           ============================================ */}
-            <SectionContainer
-                id="reasons"
-                spacing="lg"
-                width="wide"
-                background="warm"
-                ariaLabel="Reasons I love you"
-            >
-                <SectionHeader
-                    title="Why You Mean Everything"
-                    subtitle="Every moment with you has taught me what it means to truly love someone."
-                />
-
-                <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-                    variants={{
-                        hidden: {},
-                        visible: { transition: { staggerChildren: 0.15 } }
-                    }}
-                >
-                    {[
-                        { title: 'Your Smile', content: 'The way your eyes light up when you smile makes everything feel right in the world.', emoji: '💕' },
-                        { title: 'Your Kindness', content: 'Your compassion for others inspires me to be a better person every single day.', emoji: '✨' },
-                        { title: 'Our Memories', content: 'Every moment we\'ve shared has become a treasured chapter in my heart.', emoji: '🌸' },
-                        { title: 'Your Strength', content: 'The way you face challenges with grace gives me courage when I need it most.', emoji: '🦋' },
-                        { title: 'Your Laughter', content: 'That sound is my favorite melody, the one I want to hear every day of my life.', emoji: '🎵' },
-                        { title: 'Just You', content: 'Simply being near you makes everything feel like it\'s going to be okay.', emoji: '💝' },
-                    ].map((reason) => (
-                        <motion.div
-                            key={reason.title}
-                            variants={{
-                                hidden: { opacity: 0, y: 24 },
-                                visible: { opacity: 1, y: 0 }
-                            }}
-                        >
-                            <Card variant="elevated" hoverable>
-                                <CardHeader>
-                                    <span className="text-3xl mb-3 block">{reason.emoji}</span>
-                                    <CardTitle>{reason.title}</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <p>{reason.content}</p>
-                                </CardContent>
-                            </Card>
-                        </motion.div>
-                    ))}
-                </motion.div>
-            </SectionContainer>
+            <ReasonsILoveYou />
 
             {/* ============================================
           LETTER SECTION
