@@ -7,7 +7,7 @@ import {
     SectionHeader,
     AnimatedText
 } from './components/ui'
-import { Hero, Apology, PotatoPuns, ReasonsILoveYou, ScratchCards } from './components/sections'
+import { Hero, Apology, PotatoPuns, ReasonsILoveYou, ScratchCards, Countdown } from './components/sections'
 
 function App() {
     return (
@@ -36,6 +36,15 @@ function App() {
           SCRATCH CARDS SECTION
           ============================================ */}
             <ScratchCards />
+
+            {/* ============================================
+          COUNTDOWN SECTION
+          ============================================ */}
+            <Countdown
+                targetDate="2026-02-02T17:00:00+05:30"
+                heading="Until I Can Hold You Again"
+                subheading="Every second brings us closer"
+            />
 
             {/* ============================================
           LETTER SECTION
